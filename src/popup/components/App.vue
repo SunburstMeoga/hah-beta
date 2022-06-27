@@ -15,14 +15,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
     .popup-title {
-        font-size: 20px;
-        &-left {
-            color: red;
-        }
-        &-right {
-            color: blue;
-        }
+        color: red;
     }
 </style>
