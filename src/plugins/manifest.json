@@ -1,10 +1,10 @@
 {
    "manifest_version": 2,
-   "name": "hello-word-plugin",
-   "description": "vue3版本的chrome插件",
+   "name": "HAH",
+   "description": "HAH",
    "version": "1.0.0",
    "browser_action": {
-      "default_title": "hello-word-plugin",
+      "default_title": "hah-plugin",
       "default_icon": "assets/icon48.png",
       "default_popup": "popup.html"
    },
