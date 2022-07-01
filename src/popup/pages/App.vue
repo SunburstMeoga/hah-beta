@@ -1,90 +1,50 @@
 <template>
   <div class="container">
-    <div class="content">
-      <div class="content-logo">
-        <img src="../../assets/icon128.png" alt="" />
-      </div>
-      <div class="content-operate">
-        <div class="content-operate-import content-operate-button" @click="test()">
-          Import Wallet
-        </div>
-        <div class="content-operate-create content-operate-button" @click="test()">
-          Create Wallet
-        </div>
-      </div>
+    <div class="title">
+      <page-title></page-title>
+    </div>
+    <div class="balance">
+      <balance-info></balance-info>
+    </div>
+    <div class="operate">
+      <amount-operate></amount-operate>
+    </div>
+    <div class="assets">
+      <assets-record></assets-record>
+    </div>
+    <div class="currency">
+      <currency-info></currency-info>
     </div>
   </div>
 </template>
 
 <script>
+import PageTitle from "../components/pageTitle.vue";
+import BalanceInfo from "../components/balanceInfo.vue";
+import AmountOperate from "../components/amountOperate.vue"
+import AssetsRecord from "../components/assetsRecord.vue"
+import CurrencyInfo from "../components/currencyInfo.vue"
+
 export default {
-  data() {
-    return {
-      message: "test",
-    };
-  },
-  methods: {
-    test() {
-      console.log('sfjaslkjfkl');
-      this.$router.push({
-        path: '/wallet'
-      })
-    }
-  }
+  components: { PageTitle, BalanceInfo, AmountOperate, AssetsRecord, CurrencyInfo },
 };
 </script>
 
 <style lang="scss" scoped>
-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-.round-border {
-  border-radius: 50%;
-}
 .container {
-  width: 300px;
-  height: 500px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  &-logo {
-    width: 200px;
-    height: 200px;
-    margin-bottom: 34px;
-    border: 1px solid gray;
-    overflow: hidden;
-    @extend .round-border;
+  .title {
+    width: 100%;
+    margin-bottom: 20px;
   }
-  &-operate {
-    display: flex;
-    justify-content: space-between;
-    width: 270px;
-    &-button {
-      width: 120px;
-      height: 40px;
-      border-radius: 6px;
-      border-width: 1px;
-      border-style: solid;
-      text-align: center;
-      line-height: 40px;
-    }
-    &-import {
-        background: #007efe;
-        color: white;
-        border-color: #007efe;
-    }
-    &-create {
-        border-color: black;
-        color: black;
-    }
+  .balance {
+    margin-bottom: 10px;
+  }
+  .operate {
+    margin-bottom: 20px;
   }
 }
 </style>
