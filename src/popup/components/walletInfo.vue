@@ -40,10 +40,10 @@ export default {
     };
   },
   mounted() {
-    // const bip39 = require("bip39"); //导入bip39模块
-    // this.mnemonic = bip39.generateMnemonic(); //生成随机助记词
-    // // console.log(mnemonic);
-    // console.log(bip39.generateMnemonic());
+    const bip39 = require("bip39"); //导入bip39模块
+    this.mnemonic = bip39; //生成随机助记词
+    // console.log(mnemonic);
+    console.log(bip39.generateMnemonic());
   },
   methods: {
     test() {
