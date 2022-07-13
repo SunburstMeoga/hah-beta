@@ -1,21 +1,23 @@
 <template>
   <div class="container">
-    <div class="title">
+    <div class="title" v-show="!showWallet">
       <page-title :testRes="testRes"></page-title>
     </div>
-    <div class="balance">
+    <div class="balance" v-show="!showWallet">
       <balance-info></balance-info>
     </div>
-    <div class="operate">
+    <div class="operate" v-show="!showWallet">
       <amount-operate></amount-operate>
     </div>
-    <div class="assets">
+    <div class="assets" v-show="!showWallet">
       <assets-record></assets-record>
     </div>
-    <div class="currency">
+    <div class="currency" v-show="!showWallet">
       <currency-info></currency-info>
     </div>
-    {{testRes}}
+    <div v-show="showWallet">
+      <wallet-info></wallet-info>
+    </div>
   </div>
 </template>
 
@@ -24,13 +26,16 @@ import PageTitle from "../components/pageTitle.vue";
 import BalanceInfo from "../components/balanceInfo.vue";
 import AmountOperate from "../components/amountOperate.vue"
 import AssetsRecord from "../components/assetsRecord.vue"
-import CurrencyInfo from "../components/currencyInfo.vue"
+import CurrencyInfo from "../components/currencyInfo.vue" 
+import WalletInfo from '@/popup/components/walletInfo.vue'
+
 import axios from 'axios'
 export default {
-  components: { PageTitle, BalanceInfo, AmountOperate, AssetsRecord, CurrencyInfo },
+  components: { PageTitle, BalanceInfo, AmountOperate, AssetsRecord, CurrencyInfo, WalletInfo },
   data() {
     return {
-      testRes: null
+      testRes: null,
+      showWallet: true,
     }
   },
   mounted() {

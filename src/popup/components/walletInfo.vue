@@ -1,14 +1,29 @@
 <template>
   <div class="container">
     <div class="content">
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+
       <div class="content-logo">
         <img src="../../assets/icon128.png" alt="" />
       </div>
+      <div>
+        {{ mnemonic }}
+      </div>
       <div class="content-operate">
-        <div class="content-operate-import content-operate-button" @click="test()">
+        <div
+          class="content-operate-import content-operate-button"
+          @click="test()"
+        >
           Import Wallet
         </div>
-        <div class="content-operate-create content-operate-button" @click="test()">
+        <div
+          class="content-operate-create content-operate-button"
+          @click="test()"
+        >
           Create Wallet
         </div>
       </div>
@@ -21,14 +36,20 @@ export default {
   data() {
     return {
       message: "test",
+      mnemonic: ''
     };
+  },
+  mounted() {
+    // const bip39 = require("bip39"); //导入bip39模块
+    // this.mnemonic = bip39.generateMnemonic(); //生成随机助记词
+    // // console.log(mnemonic);
+    // console.log(bip39.generateMnemonic());
   },
   methods: {
     test() {
-      console.log('sfjaslkjfkl');
-     
-    }
-  }
+      console.log("sfjaslkjfkl");
+    },
+  },
 };
 </script>
 
@@ -75,13 +96,13 @@ img {
       line-height: 40px;
     }
     &-import {
-        background: #007efe;
-        color: white;
-        border-color: #007efe;
+      background: #007efe;
+      color: white;
+      border-color: #007efe;
     }
     &-create {
-        border-color: black;
-        color: black;
+      border-color: black;
+      color: black;
     }
   }
 }
