@@ -4,6 +4,7 @@
       class="amount-item amount-buy"
       v-for="(item, index) in amountList"
       :key="index"
+      @click="clickItem(itme, index)"
     >
       <div class="amount-item-icon">
         <img :src="item.icon" alt="" />
@@ -26,6 +27,11 @@ export default {
       ],
     };
   },
+  methods: {
+    clickItem(item, index) {
+      console.log(item, index)
+    }
+  }
 };
 </script>
 

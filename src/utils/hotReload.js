@@ -1,4 +1,4 @@
-// load file
+// 加载文件
 
 const filesInDirectory = dir =>
   new Promise(resolve =>
@@ -15,12 +15,13 @@ const filesInDirectory = dir =>
     })
   );
 
+// 遍历插件目录，读取文件信息，组合文件名称和修改时间成数据
 const timestampForFilesInDirectory = dir =>
   filesInDirectory(dir).then(files =>
     files.map(f => f.name + f.lastModifiedDate).join()
   );
 
-// Refresh the current active page
+// 刷新当前活动页
 const reload = () => {
   window.chrome.tabs.query({
       active: true,
@@ -31,20 +32,20 @@ const reload = () => {
       if (tabs[0]) {
         window.chrome.tabs.reload(tabs[0].id);
       }
-      // Force page refresh
+      // 强制刷新页面
       window.chrome.runtime.reload();
     }
   );
 };
 
-// Watch for file changes
+// 观察文件改动
 const watchChanges = (dir, lastTimestamp) => {
   timestampForFilesInDirectory(dir).then(timestamp => {
-    // If the file has not changed, loop the watchChanges method
+    // 文件没有改动则循环监听watchChanges方法
     if (!lastTimestamp || lastTimestamp === timestamp) {
       setTimeout(() => watchChanges(dir, timestamp), 1000); // retry after 1s
     } else {
-      // Force page refresh
+      // 强制刷新页面
       reload();
     }
   });
@@ -53,7 +54,7 @@ const watchChanges = (dir, lastTimestamp) => {
 const hotReload = () => {
   window.chrome.management.getSelf(self => {
     if (self.installType === 'development') {
-      // Get the plugin directory and monitor file changes
+      // 获取插件目录，监听文件变化
       window.chrome.runtime.getPackageDirectoryEntry(dir => watchChanges(dir));
     }
   });

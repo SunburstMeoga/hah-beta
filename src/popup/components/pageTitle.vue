@@ -6,7 +6,7 @@
         </div>
         <div class="content-title-middle">
           <div class="content-title-middle-status"></div>
-          <div class="content-title-middle-name">Ethereum</div>
+          <div class="content-title-middle-name">{{ testRes }}</div>
           <div class="content-title-middle-drop">Toggle</div>
         </div>
         <div class="content-title-right">Account</div>
@@ -17,6 +17,9 @@
 <script>
 export default {
   name: "pageTitle",
+  props: {
+    testRes: null
+  },
   data() {
     return {
       message: "test",

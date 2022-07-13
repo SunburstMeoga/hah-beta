@@ -8,9 +8,9 @@
       "default_icon": "assets/icon48.png",
       "default_popup": "popup.html"
    },
-   "permissions": [],
    "background": {
       "scripts": [
+         "js/chunk-vendors.js",
          "js/background.js"
       ]
    },
@@ -22,18 +22,26 @@
    "content_scripts": [
       {
          "matches": [
-            "http://*/*",
-            "https://*/*"
+            "https://*.taobao.com/*"
          ],
          "css": [
-            "css/popup.css"
+            "css/content.css"
          ],
          "js": [
-            "js/chunk-vendors.js"
+            "js/chunk-vendors.js",
+            "js/content.js"
          ],
          "run_at": "document_idle"
       }
    ],
+   "permissions":
+    [
+        "contextMenus",
+        "tabs",
+        "notifications",
+        "webRequest",
+        "storage"
+    ],
    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
    "web_accessible_resources": [
       "js/inject.js"
