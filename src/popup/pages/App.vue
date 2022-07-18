@@ -15,8 +15,11 @@
     <div class="currency" v-show="!showWallet">
       <currency-info></currency-info>
     </div>
-    <div v-show="showWallet">
-      <wallet-info></wallet-info>
+    <div v-show="!showWallet">
+      <wallet-info @importWallet="importWallet()" @createWallet="createWallet()"></wallet-info>
+    </div>
+    <div class="mnemonic">
+      <input-mnemonic></input-mnemonic>
     </div>
   </div>
 </template>
@@ -28,10 +31,11 @@ import AmountOperate from "../components/amountOperate.vue"
 import AssetsRecord from "../components/assetsRecord.vue"
 import CurrencyInfo from "../components/currencyInfo.vue" 
 import WalletInfo from '@/popup/components/walletInfo.vue'
+import InputMnemonic from '@/popup/components/inputMnemonic.vue'
 
 import axios from 'axios'
 export default {
-  components: { PageTitle, BalanceInfo, AmountOperate, AssetsRecord, CurrencyInfo, WalletInfo },
+  components: { PageTitle, BalanceInfo, AmountOperate, AssetsRecord, CurrencyInfo, WalletInfo, InputMnemonic },
   data() {
     return {
       testRes: null,
@@ -42,6 +46,12 @@ export default {
     this.getData()
   },
   methods:{
+  importWallet() {//导入钱包
+    console.log('导入钱包')
+  },
+  createWallet() { //创建钱包
+    console.log('创建钱包')
+  },
    getData(){
       var api="http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1";
       //2.使用axios 进行get请求

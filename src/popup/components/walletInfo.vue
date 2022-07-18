@@ -6,23 +6,22 @@
       <br />
       <br />
       <br />
-
       <div class="content-logo">
         <img src="../../assets/icon128.png" alt="" />
       </div>
       <div>
-        {{ mnemonic }}
+        助记词{{ mnemonic }}
       </div>
       <div class="content-operate">
         <div
           class="content-operate-import content-operate-button"
-          @click="test()"
+          @click="importWallet()"
         >
           Import Wallet
         </div>
         <div
           class="content-operate-create content-operate-button"
-          @click="test()"
+          @click="createWallet()"
         >
           Create Wallet
         </div>
@@ -39,16 +38,17 @@ export default {
       mnemonic: ''
     };
   },
-  mounted() {
-    const bip39 = require("bip39"); //导入bip39模块
-    this.mnemonic = bip39; //生成随机助记词
-    // console.log(mnemonic);
-    console.log(bip39.generateMnemonic());
-  },
   methods: {
-    test() {
-      console.log("sfjaslkjfkl");
+    //导入钱包
+    importWallet() {
+      this.mnemonic = '导入钱包'
+      this.$emit('importWallet')
     },
+    // 创建钱包
+    createWallet() {
+      this.mnemonic = '创建钱包'
+      this.$emit('createWallet')
+    }
   },
 };
 </script>
