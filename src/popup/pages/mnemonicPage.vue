@@ -20,11 +20,6 @@
         </div>
       </div>
     </div>
-    助记词:{{ mnemonic }} <br/>
-    地址:{{ address }} <br/>
-    私钥:{{ privateKey }}
-    <!-- ethers: {{ ethers }} -->
-
     <div class="confirm" @click="clickConfirm()">确认</div>
   </div>
 </template>
@@ -42,10 +37,12 @@ export default {
       mnemonic: "",
       address: "",
       privateKey: "",
+      type: ''
     };
   },
   mounted() {
-    this.clickConfirm();
+    this.type = this.$route.query.type
+    console.log('当前创建钱包方式', this.type)
   },
   methods: {
     // generateMnemonic(strength, rng, wordlist) {
@@ -87,7 +84,7 @@ export default {
       this.contentList[3][1].content = arr[10];
       this.contentList[3][2].content = arr[11];
       this.privateKey = wallet.privateKey;
-      this.address = wallet.address
+      console.log(this.address);
       // this.address = address;
       // this.test = hdkey
       // this.ethers = ethers
@@ -97,10 +94,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  // width: 800px;
-  // height: 500px;
-}
+
 .title {
   font-size: 16px;
   margin-top: 20px;
