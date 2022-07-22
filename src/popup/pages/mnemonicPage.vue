@@ -114,9 +114,10 @@ export default {
       var wallet = new ethers.Wallet(privateKey);
       var address = wallet.address;
       this.address = address
-      this.showAddressInfo = true
-      console.log("钱包地址：", address);
-      console.log("钱包私钥：", privateKey);
+    //   this.showAddressInfo = true
+    //   console.log("钱包地址：", address);
+    //   console.log("钱包私钥：", privateKey);
+      this.toTrandePage()
     },
     //复制钱包地址
     copyAddress() {
@@ -126,9 +127,19 @@ export default {
     scanCode() {
         this.showScanCode = true
     },
+    //前往交易页面
+    toTrandePage() {
+        this.$router.push({
+        path: '/trade',
+      })
+    },
     //点击底部确认按钮
     clickConfirm() {
-        this.importWalletAddress()
+        if(this.type === "import") {
+            this.importWalletAddress()
+        } else {
+            this.toTrandePage()
+        }
     },
     // generateMnemonic(strength, rng, wordlist) {
     //   // 空参时长度默认为128，rng为randomBytes方法，wordlist为默认值
