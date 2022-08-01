@@ -1,12 +1,12 @@
 <template>
   <!-- <router-view /> -->
-  <vote-page></vote-page>
+  <transfer-page></transfer-page>
 </template>
 
 <script>
-import VotePage from '@/popup/pages/votePage.vue'
+import TransferPage from '@/popup/pages/createWalletPage.vue'
 export default {
-  components: { VotePage },
+  components: { TransferPage },
 }
 </script>
 

@@ -1,10 +1,14 @@
 import { createApp } from 'vue'
 import App from './pages/App.vue'
 import { createRouter,createWebHashHistory} from "vue-router";
+import vant from 'vant'
+import 'vant/lib/index.css'
 
 const home = () => import("../popup/pages/homePage.vue")
 const wallet = () => import("../popup/pages/walletInfo.vue")
-const  mnemonic = () => import("../popup/pages/mnemonicPage.vue")
+const mnemonic = () => import("../popup/pages/mnemonicPage.vue")
+const trande = () => import("../popup/pages/trandePage.vue")
+const createWallet = () => import("../popup/pages/createWalletPage.vue")
 
 const routes = [
     
@@ -24,6 +28,16 @@ const routes = [
         name: "mnemonic",
         component: mnemonic
     },
+    {
+      path: "/trande",
+      name: "trande",
+      component: trande
+  },
+  {
+    path: "/createWallet",
+    name: "createWallet",
+    component: createWallet
+},
   ]
 
 const VueRouter = createRouter({
@@ -34,5 +48,5 @@ const VueRouter = createRouter({
 // createApp(App).mount('#app')
 
 const AppVue = createApp(App)
-AppVue.use(VueRouter).mount('#app')
+AppVue.use(VueRouter).use(vant).mount('#app')
 

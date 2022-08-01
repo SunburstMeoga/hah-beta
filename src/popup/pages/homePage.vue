@@ -1,59 +1,62 @@
 <template>
   <div class="container">
     <div class="content">
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
       <div class="content-logo">
         <img src="../../assets/icon128.png" alt="" />
       </div>
-     
+
       <div class="content-operate">
-        <div
+        <van-button
           class="content-operate-import content-operate-button"
           @click="importWallet()"
+          type="primary"
         >
-          Import Wallet
-        </div>
-        <div
+          导入钱包
+        </van-button>
+
+        <van-button
           class="content-operate-create content-operate-button"
           @click="createWallet()"
+          type="default"
         >
-          Create Wallet
-        </div>
+          创建钱包
+        </van-button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { Button } from "vant";
 export default {
+  components: { [Button.name]: Button },
   data() {
     return {
       message: "test",
-      mnemonic: ''
+      mnemonic: "",
     };
   },
   methods: {
     //前往助记词页面
     toMnemonicPage(type) {
       this.$router.push({
-        path: '/mnemonic',
+        path: "/mnemonic",
         query: {
-          type: type
-        }
-      })
+          type: type,
+        },
+      });
     },
     //导入钱包
     importWallet() {
-      this.toMnemonicPage('import')
+      this.toMnemonicPage("import");
     },
     // 创建钱包
     createWallet() {
-      this.toMnemonicPage('create')
-    }
+      // this.toMnemonicPage("create");
+      this.$router.push({
+        path: "/createWallet",
+      });
+    },
   },
 };
 </script>
@@ -68,8 +71,8 @@ img {
   border-radius: 50%;
 }
 .container {
-  width: 300px;
-  height: 500px;
+  width: 360px;
+  height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -82,10 +85,9 @@ img {
   &-logo {
     width: 200px;
     height: 200px;
-    margin-bottom: 34px;
-    border: 1px solid gray;
+    margin-bottom: 40px;
     overflow: hidden;
-    @extend .round-border;
+    // @extend .round-border;
   }
   &-operate {
     display: flex;
@@ -106,8 +108,8 @@ img {
       border-color: #007efe;
     }
     &-create {
-      border-color: black;
-      color: black;
+      border-color: gray;
+      color: gray;
     }
   }
 }

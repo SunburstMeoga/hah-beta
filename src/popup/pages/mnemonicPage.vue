@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <div class="title">{{ pageTitle }}</div>
+    <div class="title">
+      <page-title pageTitleWord="助记词"></page-title>
+    </div>
     <div class="content-list">
       <div
         class="content-list-all"
@@ -22,26 +24,35 @@
       </div>
     </div>
     <div class="address" v-show="showAddressInfo">
-        <div class="address-title">
-            钱包地址
+      <div class="address-title">钱包地址：</div>
+      <div class="address-content">{{ address }}</div>
+      <div class="address-operate">
+        <div
+          class="address-operate-button address-operate-copy"
+          @click="copyAddress()"
+        >
+          复制钱包地址
         </div>
-        <div class="address-content">{{ address }}</div>
-        <div class="address-operate">
-            <div class="address-operate-button address-operate-copy" @click="copyAddress()">复制钱包地址</div>
-            <div class="address-operate-button address-operate-code" @click="scanCode()">生成二维码</div>
+        <div
+          class="address-operate-button address-operate-code"
+          @click="scanCode()"
+        >
+          生成二维码
         </div>
-        <div class="scan-code" v-show="showScanCode">
-            <scan-code-popup :value="address"></scan-code-popup>
-        </div>
+      </div>
+      <div class="scan-code" v-show="showScanCode">
+        <scan-code-popup :value="address"></scan-code-popup>
+      </div>
     </div>
     <div class="confirm" @click="clickConfirm()">确认</div>
   </div>
 </template>
 
 <script>
-import ScanCodePopup from '@/popup/components/scanCodePopup.vue'
+import ScanCodePopup from "@/popup/components/scanCodePopup.vue";
+import PageTitle from "@/popup/components/pageTitle.vue";
 export default {
-  components: { ScanCodePopup },
+  components: { ScanCodePopup, PageTitle },
   data() {
     return {
       contentList: [
@@ -57,7 +68,7 @@ export default {
       pageTitle: "",
       canEnter: true,
       showScanCode: false,
-      showAddressInfo: false
+      showAddressInfo: false,
     };
   },
   mounted() {
@@ -68,11 +79,11 @@ export default {
       this.pageTitle = "请牢记助记词（创建钱包）";
       this.generateMnemonicsAndAddresses();
       this.canEnter = false;
-      this.showAddressInfo = true
+      this.showAddressInfo = true;
     } else {
       this.pageTitle = "请输入助记词（导入钱包）";
-      this.canEnter = true
-      this.showAddressInfo = false
+      this.canEnter = true;
+      this.showAddressInfo = false;
     }
   },
   methods: {
@@ -100,46 +111,43 @@ export default {
     },
     //根据私钥和助记词找回钱包地址
     importWalletAddress() {
-      let arr = []
-      this.contentList.map(item => {
-          item.map(_item => {
-              arr.push(_item.content)
-          })
-      })
-      let mnemonicStr = '';
-      mnemonicStr = arr.join(' ')
+      let arr = [];
+      this.contentList.map((item) => {
+        item.map((_item) => {
+          arr.push(_item.content);
+        });
+      });
+      let mnemonicStr = "";
+      mnemonicStr = arr.join(" ");
       var ethers = require("ethers");
       var mnemonic = ethers.Wallet.fromMnemonic(mnemonicStr);
       var privateKey = mnemonic.privateKey;
       var wallet = new ethers.Wallet(privateKey);
       var address = wallet.address;
-      this.address = address
-    //   this.showAddressInfo = true
-    //   console.log("钱包地址：", address);
-    //   console.log("钱包私钥：", privateKey);
-      this.toTrandePage()
+      this.address = address;
+      this.toTrandePage();
     },
     //复制钱包地址
     copyAddress() {
-        navigator.clipboard.writeText(this.address);
-        alert('复制成功')
+      navigator.clipboard.writeText(this.address);
+      alert("复制成功");
     },
     scanCode() {
-        this.showScanCode = true
+      this.showScanCode = true;
     },
     //前往交易页面
     toTrandePage() {
-        this.$router.push({
-        path: '/trade',
-      })
+      this.$router.push({
+        path: "/trade",
+      });
     },
     //点击底部确认按钮
     clickConfirm() {
-        if(this.type === "import") {
-            this.importWalletAddress()
-        } else {
-            this.toTrandePage()
-        }
+      if (this.type === "import") {
+        this.importWalletAddress();
+      } else {
+        this.toTrandePage();
+      }
     },
     // generateMnemonic(strength, rng, wordlist) {
     //   // 空参时长度默认为128，rng为randomBytes方法，wordlist为默认值
@@ -175,28 +183,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container {
+    height: 600px;
+}
 .title {
-  font-size: 16px;
-  margin-top: 20px;
-  font-weight: bold;
+    width: 360px;
 }
 .content-list {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 40px;
+  padding-top: 70px;
   margin-bottom: 20px;
   &-all {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 16px;
+    padding: 0 12px;
     &-item {
       width: 32%;
       height: 40px;
       border-radius: 6px;
-      border: 1px solid gainsboro;
+    //   border: 1px solid gainsboro;
       input {
         text-align: center;
         width: 100%;
@@ -206,48 +216,44 @@ export default {
   }
 }
 .address {
-    width: 280px;
-    background: #f8f8f8;
-    border: 1px solid #dcdcdc;
-    border-radius: 6px;
-    padding: 10px;
-    margin-bottom: 40px;
-    &-title {
-        font-weight: bold;
-        font-size: 14px;
-         margin-bottom: 6px;
+  width: 316px;
+  background: #f8f8f8;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  padding: 10px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  &-title {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+  &-content {
+    word-break: break-all;
+    margin-bottom: 12px;
+  }
+  &-operate {
+    display: flex;
+    justify-content: space-between;
+    &-button {
+      width: 80px;
+      height: 20px;
+      border-radius: 20px;
+      border: 1px solid;
+      font-size: 10px;
+      text-align: center;
+      line-height: 20px;
     }
-    &-content {
-        word-break: break-all;
-        margin-bottom: 6px;
-    }
-    &-operate {
-        display: flex;
-        justify-content: space-around;
-        &-button {
-            width: 80px;
-            height: 20px;
-            border-radius: 20px;
-            border: 1px solid;
-            font-size: 10px;
-            text-align: center;
-            line-height: 20px;
-        }
-        &-copy {
-
-        }
-        &-code {
-
-        }
-    }
+  }
 }
 .confirm {
-  width: 300px;
+  width: 336px;
   background: #007efe;
   height: 40px;
   line-height: 40px;
   text-align: center;
   color: white;
   border-radius: 6px;
+  margin: 0 auto;
 }
 </style>
