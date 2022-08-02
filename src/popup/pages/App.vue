@@ -1,12 +1,12 @@
 <template>
-  <!-- <router-view /> -->
-  <transfer-page></transfer-page>
+  <router-view />
+  <!-- <transfer-page></transfer-page> -->
 </template>
 
 <script>
-import TransferPage from '@/popup/pages/createWalletPage.vue'
+// import TransferPage from '@/popup/pages/backupMnemonic.vue'
 export default {
-  components: { TransferPage },
+  // components: { TransferPage },
 }
 </script>
 
