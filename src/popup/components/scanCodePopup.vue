@@ -1,13 +1,16 @@
 <template>
   <div class="container-code">
-    <div class="code">
-        <qrcode-vue :value="value" :size="size" level="H" />
-    </div>
+    <van-popup v-model:show="show">
+       <div class="code">
+         <qrcode-vue :value="value" :size="size" level="H" />
+       </div>
+    </van-popup>
   </div>
 </template>
 
 <script>
 import QrcodeVue from 'qrcode.vue'
+import { Popup } from 'vant';
 export default {
   props:{
     value:{
@@ -19,14 +22,17 @@ export default {
       default:300
     }
   },
-  components:{
-    QrcodeVue
-  },
+  components:{ QrcodeVue, [Popup.name]: Popup},
+  data() {
+    return {
+      show: false
+    }
+  }
 }
 </script>
 
 <style>
-.container-code {
+/* .container-code {
   position: fixed;
   top: 0;
   left: 0;
@@ -37,9 +43,9 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+}*/
 .code {
     background: #fff;
     padding: 6px;
-}
+} 
 </style>

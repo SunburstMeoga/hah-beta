@@ -77,8 +77,8 @@
         {{ finishBackup ? "我已安全备份" : "开始备份" }}
       </van-button>
     </div>
-    <div class="scan-code" v-show="showScanCode">
-        <scan-code-popup :value="mnemonic"></scan-code-popup>
+    <div class="scan-code">
+        <scan-code-popup ref="scanCodePopup" :value="mnemonic"></scan-code-popup>
       </div>
   </div>
 </template>
@@ -111,7 +111,7 @@ export default {
     },
     //生成二维码
     generateQRcode() {
-      this.showScanCode = true
+      this.$refs.scanCodePopup.show = true
       console.log('是否显示二维码', this.showScanCode)
     },
     //点击底部按钮按钮
