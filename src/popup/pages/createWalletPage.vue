@@ -48,11 +48,13 @@ export default {
     generateMnemonicsAndAddresses() {
       let ethers = require("ethers");
       var wallet = ethers.Wallet.createRandom();
-      let arr = wallet.mnemonic.phrase.trim().split(/\s+/);
-      console.log(wallet.address);
-      console.log(arr);
+      // let arr = wallet.mnemonic.phrase.trim().split(/\s+/);
+      let mnemonic = wallet.mnemonic.phrase
       this.$router.push({
         path: "/success",
+        query: {
+          mnemonic: mnemonic
+        }
       });
     },
     //点击创建钱包按钮

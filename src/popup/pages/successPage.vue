@@ -62,7 +62,12 @@ export default {
   data() {
     return {
       showPopup: false,
+      mnemonic: ''
     };
+  },
+  mounted() {
+    this.mnemonic = this.$route.query.mnemonic
+    console.log('助记词', this.mnemonic)
   },
   methods: {
     //点击开始备份按钮
@@ -79,6 +84,9 @@ export default {
       this.togglePopup()
       this.$router.push({
         path: "/backupMnemonic",
+        query: {
+          mnemonic: this.mnemonic
+        }
       });
       console.log("clickConfirm");
     },

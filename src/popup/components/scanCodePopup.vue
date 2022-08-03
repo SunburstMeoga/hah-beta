@@ -33,7 +33,7 @@ export default {
   width: 100vw;
   height: 100vh;
   background: #000;
-  opacity: 0.8;
+  opacity: 1;
   display: flex;
   justify-content: center;
   align-items: center;
