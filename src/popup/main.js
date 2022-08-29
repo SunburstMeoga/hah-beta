@@ -3,6 +3,8 @@ import App from './pages/App.vue'
 import { createRouter, createWebHashHistory } from "vue-router";
 import vant from 'vant'
 import 'vant/lib/index.css'
+import '../assets/icons/iconfont.css'
+
 
 const home = () => import("../popup/pages/homePage.vue")
 const wallet = () => import("../popup/pages/walletInfo.vue")
@@ -11,6 +13,8 @@ const trande = () => import("../popup/pages/trandePage.vue")
 const createWallet = () => import("../popup/pages/createWalletPage.vue")
 const success = () => import("../popup/pages/successPage.vue")
 const backupMnemonic = () => import("../popup/pages/backupMnemonic.vue")
+const indexPage = () => import("../popup/pages/indexPage.vue")
+const coinDetails = () => import("../popup/pages/coinDetails.vue")
 
 const routes = [
 
@@ -49,6 +53,16 @@ const routes = [
     path: "/backupMnemonic",
     name: "backupMnemonic",
     component: backupMnemonic
+  },
+  {
+    path: "/indexPage",
+    name: "indexPage",
+    component: indexPage
+  },
+  {
+    path: "/coinDetails",
+    name: "coinDetails",
+    component: coinDetails
   },
 ]
 

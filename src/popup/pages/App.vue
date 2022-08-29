@@ -4,12 +4,16 @@
 </template>
 
 <script>
-// import TransferPage from '@/popup/pages/backupMnemonic.vue'
+// import TransferPage from '@/popup/pages/coinDetails.vue'
+
 export default {
   // components: { TransferPage },
 }
 </script>
 
 <style>
-
+img {
+  width: 100%;
+  object-fit: contain;
+}
 </style>

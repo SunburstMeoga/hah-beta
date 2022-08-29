@@ -1,0 +1,80 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 3492566 */
+  src: url('iconfont.woff2?t=1661793663711') format('woff2'),
+       url('iconfont.woff?t=1661793663711') format('woff'),
+       url('iconfont.ttf?t=1661793663711') format('truetype'),
+       url('iconfont.svg?t=1661793663711#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-up-square-o:before {
+  content: "\e615";
+}
+
+.icon-more:before {
+  content: "\e6cb";
+}
+
+.icon-settings:before {
+  content: "\e68a";
+}
+
+.icon-copy:before {
+  content: "\e706";
+}
+
+.icon-add:before {
+  content: "\e661";
+}
+
+.icon-roundaddlight:before {
+  content: "\e7a7";
+}
+
+.icon-shoukuan:before {
+  content: "\e622";
+}
+
+.icon-reload:before {
+  content: "\e78c";
+}
+
+.icon-navicon-tp:before {
+  content: "\e66d";
+}
+
+.icon-caret-down:before {
+  content: "\e8ec";
+}
+
+.icon-share:before {
+  content: "\e764";
+}
+
+.icon-menu:before {
+  content: "\e6ec";
+}
+
+.icon-zhuanzhang:before {
+  content: "\e600";
+}
+
+.icon-paixu:before {
+  content: "\e7e9";
+}
+
+.icon-right:before {
+  content: "\e6a3";
+}
+
+.icon-arrow-down:before {
+  content: "\e665";
+}
+

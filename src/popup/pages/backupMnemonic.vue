@@ -17,11 +17,7 @@
     <div class="check" v-show="showTips">
       <div class="check-mnemonic" v-show="showMnemonic">
         <div class="check-mnemonic-all">
-          <div
-            class="check-mnemonic-all-item"
-            v-for="(item, index) in mnemonicList"
-            :key="index"
-          >
+          <div class="check-mnemonic-all-item" v-for="(item, index) in mnemonicList" :key="index">
             {{ item }}
           </div>
         </div>
@@ -57,29 +53,20 @@
           <div>意味着获取了资产的所有权，请保证周边环境安全。</div>
         </div>
         <div class="check-cover-operate">
-          <van-button
-            class="check-cover-operate-button"
-            @click="checkMnemonic()"
-            plain
-            type="success"
-            >查看助记词</van-button
-          >
+          <van-button class="check-cover-operate-button" @click="checkMnemonic()" plain type="success">查看助记词
+          </van-button>
         </div>
       </div>
     </div>
 
     <div class="operate">
-      <van-button
-        class="operate-backup"
-        @click="clickBottomButton()"
-        type="primary"
-      >
+      <van-button class="operate-backup" @click="clickBottomButton()" type="primary">
         {{ finishBackup ? "我已安全备份" : "开始备份" }}
       </van-button>
     </div>
     <div class="scan-code">
-        <scan-code-popup ref="scanCodePopup" :value="mnemonic"></scan-code-popup>
-      </div>
+      <scan-code-popup ref="scanCodePopup" :value="mnemonic"></scan-code-popup>
+    </div>
   </div>
 </template>
 
@@ -88,7 +75,7 @@ import { Button, Toast } from "vant";
 import PageTitle from "@/popup/components/pageTitle.vue";
 import ScanCodePopup from "@/popup/components/scanCodePopup.vue";
 export default {
-  components: { [Button.name]: Button, [Toast.name]:Toast, PageTitle, ScanCodePopup },
+  components: { [Button.name]: Button, [Toast.name]: Toast, PageTitle, ScanCodePopup },
   data() {
     return {
       mnemonic: "",
@@ -122,6 +109,9 @@ export default {
         this.showTips = true;
         this.finishBackup = true;
       } else {
+        this.$router.push({
+          path: "/indexPage",
+        });
       }
     },
     //点击查看助记词按钮
@@ -135,16 +125,20 @@ export default {
 <style lang="scss" scoped>
 .container {
   height: 600px;
+
   .title {
     width: 360px;
   }
+
   .content {
     width: 320px;
     padding-top: 56px;
     margin: 0 auto;
+
     &-title {
       margin-bottom: 20px;
     }
+
     &-img {
       margin: 0 auto;
       width: 300px;
@@ -153,16 +147,19 @@ export default {
       justify-content: center;
       align-items: center;
     }
+
     &-tips {
       color: #515060;
     }
   }
+
   .check {
     position: relative;
     width: 320px;
     height: 320px;
     margin: 0 auto;
     padding-top: 56px;
+
     &-mnemonic {
       width: 320px;
       height: 300px;
@@ -172,6 +169,7 @@ export default {
       background: #f7f8fa;
       margin-bottom: 6px;
       border-radius: 2px;
+
       &-all {
         width: 300px;
         height: 300px;
@@ -179,6 +177,7 @@ export default {
         flex-wrap: wrap;
         justify-content: space-around;
         align-items: center;
+
         &-item {
           width: 30%;
           height: 40px;
@@ -191,6 +190,7 @@ export default {
         }
       }
     }
+
     &-save {
       width: 320px;
       height: 10px;
@@ -200,49 +200,59 @@ export default {
       margin-bottom: 6px;
       background: #f7f8fa;
       border-radius: 2px;
+
       &-item {
         color: #007efe;
         width: 50%;
         text-align: center;
+        cursor: pointer;
       }
+
       &-copy {
         border-right: 1px solid rgba(194, 200, 213, 0.3);
       }
     }
+
     &-tips {
       width: 320px;
       background: #f7f8fa;
       padding: 8px 0;
       border-radius: 2px;
+
       &-title {
         display: flex;
         justify-content: center;
         align-items: center;
         margin: 0 auto;
         margin-bottom: 14px;
+
         &-img {
           width: 12px;
           height: 12px;
+
           img {
             width: 100%;
             height: 100%;
             object-fit: contain;
           }
         }
+
         &-content {
           font-weight: bold;
           text-indent: 4px;
         }
       }
+
       &-content {
         width: 288px;
         margin: 0 auto;
         color: #515060;
+
         &-top {
           margin-bottom: 12px;
         }
-        &-bottom {
-        }
+
+        &-bottom {}
       }
     }
 
@@ -255,6 +265,7 @@ export default {
       justify-content: center;
       align-items: center;
       z-index: 2;
+
       &-img {
         margin-bottom: 10px;
         width: 60px;
@@ -262,12 +273,14 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+
         img {
           width: 100%;
           height: 100%;
           object-fit: contain;
         }
       }
+
       &-word {
         margin-bottom: 10px;
         color: #515060;
@@ -276,6 +289,7 @@ export default {
         justify-content: center;
         align-items: center;
       }
+
       &-operate {
         &-button {
           width: 150px;
@@ -283,6 +297,7 @@ export default {
         }
       }
     }
+
     &-cover::after {
       content: "";
       position: absolute;
@@ -294,6 +309,7 @@ export default {
       z-index: -1;
     }
   }
+
   .operate {
     position: fixed;
     left: 0;
@@ -302,6 +318,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+
     &-backup {
       width: 320px;
       height: 40px;
