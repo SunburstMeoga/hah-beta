@@ -1,13 +1,13 @@
 <template>
-  <!-- <router-view /> -->
-  <transfer-page></transfer-page>
+  <router-view />
+  <!-- <transfer-page></transfer-page> -->
 </template>
 
 <script>
-import TransferPage from '@/popup/pages/indexPage.vue'
+// import TransferPage from '@/popup/pages/indexPage.vue'
 
 export default {
-  components: { TransferPage },
+  // components: { TransferPage },
 }
 </script>
 

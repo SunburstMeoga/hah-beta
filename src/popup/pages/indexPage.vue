@@ -6,7 +6,7 @@
             </div>
             <div class="content-info">
                 <div class="info-module content-info-user">
-                    <div class="content-info-user-name">Lotto <span
+                    <div class="content-info-user-name" @click="clickName">Lotto <span
                             class="content-info-user-name-icon icon iconfont icon-arrow-right"></span></div>
                     <div class="content-info-user-right">
                         <div class="content-info-user-right-status">
@@ -39,10 +39,10 @@
                 <div class="info-module content-info-condition">
                     <div class="content-info-condition-item" v-for="(item, index) in conditionList" :key="index">
                         <div class="content-info-condition-item-top">
-                            <div class="content-info-ocndition-item-top-title">
+                            <div class="content-info-condition-item-top-title">
                                 {{ item.title }}
                             </div>
-                            <div class="content-info-ocndition-item-top-number">
+                            <div class="content-info-condition-item-top-number">
                                 {{ item.number }}
                             </div>
                         </div>
@@ -86,15 +86,29 @@
                 </div>
             </div>
         </div>
+        <van-popup v-model:show="showLeftPopup" position="left">
+            <div class="left-popup">
+                <div class="left-popup-logo">
+                    <img src="@/assets/icon128.png" alt="">
+                </div>
+                <div class="left-popup-title">
+                    热钱包列表(1)
+                </div>
+                <div class="left-popup-list">
+                    <hot-wallet-card></hot-wallet-card>
+                </div>
+            </div>
+        </van-popup>
     </div>
 </template>
 
 <script>
 import mainPageNav from './mainPageNav.vue';
 import assetsItem from '../components/assetsItem.vue'
-import { Tab, Tabs, Popover } from 'vant';
+import hotWalletCard from '../components/hotWalletCard.vue';
+import { Tab, Tabs, Popover, Popup } from 'vant';
 export default {
-    components: { mainPageNav, assetsItem, [Tab.name]: Tab, [Tabs.name]: Tabs, [Popover.name]: Popover },
+    components: { mainPageNav, assetsItem, hotWalletCard, [Tab.name]: Tab, [Tabs.name]: Tabs, [Popover.name]: Popover, [Popup.name]: Popup },
     data() {
         return {
             conditionList: [{ title: '能量', number: '1/4' }, { title: '带宽', number: '1/4' }],
@@ -108,7 +122,8 @@ export default {
 
             currentTab: 0,
             currentOperate: null,
-            showPopover: false
+            showPopover: false,
+            showLeftPopup: false
         }
     },
     methods: {
@@ -129,12 +144,41 @@ export default {
         },
         onSelect() {
 
+        },
+        clickName() {
+            this.showLeftPopup = true
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
+.left-popup {
+    width: 330px;
+    height: 600px;
+    overflow: hidden;
+
+    &-logo {
+        width: 80px;
+        height: 80px;
+        margin: 40px auto 20px auto;
+    }
+
+    &-title {
+        text-indent: 5px;
+        margin-bottom: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #505160;
+        opacity: .9;
+    }
+
+    &-list {
+        margin: 0 auto;
+        width: 320px;
+    }
+}
+
 .container {
     width: 360px;
     height: 600px;
@@ -158,6 +202,7 @@ export default {
                     justify-content: flex-start;
                     align-items: flex-end;
                     color: #fff;
+                    cursor: pointer;
 
                     &-icon {
                         margin-left: 1px;
@@ -197,8 +242,7 @@ export default {
 
             &-balance {
                 font-weight: 500;
-                font-size: 30px;
-                line-height: 28px;
+                font-size: 24px;
                 margin-top: 2px;
                 color: #f7f8fa;
             }
@@ -213,12 +257,21 @@ export default {
                     width: 135px;
 
                     &-top {
-                        margin-bottom: 6px;
+                        margin-bottom: 2px;
                         display: flex;
                         justify-content: space-between;
                         align-items: center;
                         font-size: 12px;
                         color: #fbfbfb;
+
+                        &-title {
+                            transform: scale(.9);
+                        }
+
+                        &-number {
+                            transform: scale(.9);
+
+                        }
                     }
 
                     &-bottom {
@@ -338,7 +391,7 @@ export default {
     .info-module {
         width: 320px;
         margin: 0 auto;
-        margin-bottom: 6px;
+        margin-bottom: 10px;
         display: flex;
         align-items: center;
     }
