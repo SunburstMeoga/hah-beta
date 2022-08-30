@@ -15,6 +15,8 @@ const success = () => import("../popup/pages/successPage.vue")
 const backupMnemonic = () => import("../popup/pages/backupMnemonic.vue")
 const indexPage = () => import("../popup/pages/indexPage.vue")
 const coinDetails = () => import("../popup/pages/coinDetails.vue")
+const settingPage = () => import("../popup/pages/settingPage.vue")
+const nodeManager = () => import("../popup/pages/nodeManager.vue")
 
 const routes = [
 
@@ -63,6 +65,16 @@ const routes = [
     path: "/coinDetails",
     name: "coinDetails",
     component: coinDetails
+  },
+  {
+    path: "/settingPage",
+    name: "settingPage",
+    component: settingPage
+  },
+  {
+    path: "/nodeManager",
+    name: "nodeManager",
+    component: nodeManager
   },
 ]
 

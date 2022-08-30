@@ -6,6 +6,55 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "212764",
+      "name": "manager ",
+      "font_class": "manager",
+      "unicode": "ea2d",
+      "unicode_decimal": 59949
+    },
+    {
+      "icon_id": "11487977",
+      "name": "arrow-right",
+      "font_class": "arrow-right",
+      "unicode": "e743",
+      "unicode_decimal": 59203
+    },
+    {
+      "icon_id": "722445",
+      "name": "货币",
+      "font_class": "huobi",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "5778139",
+      "name": "节点管理",
+      "font_class": "jiedianguanli",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "7155296",
+      "name": "关于我们",
+      "font_class": "guanyuwomen",
+      "unicode": "e654",
+      "unicode_decimal": 58964
+    },
+    {
+      "icon_id": "12268085",
+      "name": "违法白名单",
+      "font_class": "weifabaimingdan",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "16372252",
+      "name": "地址簿",
+      "font_class": "dizhibu",
+      "unicode": "e650",
+      "unicode_decimal": 58960
+    },
+    {
       "icon_id": "13253900",
       "name": "up-square-o",
       "font_class": "up-square-o",

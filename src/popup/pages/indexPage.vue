@@ -5,6 +5,23 @@
                 <main-page-nav />
             </div>
             <div class="content-info">
+                <div class="info-module content-info-user">
+                    <div class="content-info-user-name">Lotto <span
+                            class="content-info-user-name-icon icon iconfont icon-arrow-right"></span></div>
+                    <div class="content-info-user-right">
+                        <div class="content-info-user-right-status">
+                            未连接
+                        </div>
+                        <van-popover v-model:show="showPopover" placement="bottom-end" :actions="managerActions"
+                            @select="onSelect" theme="dark">
+                            <template #reference>
+                                <div class="content-info-user-right-manager icon iconfont icon-manager">
+                                </div>
+                            </template>
+                        </van-popover>
+
+                    </div>
+                </div>
                 <div class="info-module content-info-account">
                     <div class="content-info-account-address">
                         <div class="content-info-account-address-word">
@@ -40,7 +57,7 @@
                     :class="currentOperate === index ? 'content-operate-current' : ''"
                     v-for="(item, index) in operateList" :key="index">
                     <div class="content-operate-item-icon">
-                        <div class="icon iconfont" :class="item.icon"></div>
+                        <div class="content-operate-item-icon-svg icon iconfont" :class="item.icon"></div>
                     </div>
                     <div class="content-operate-item-word">
                         {{ item.title }}
@@ -75,17 +92,23 @@
 <script>
 import mainPageNav from './mainPageNav.vue';
 import assetsItem from '../components/assetsItem.vue'
-import { Tab, Tabs } from 'vant';
+import { Tab, Tabs, Popover } from 'vant';
 export default {
-    components: { mainPageNav, assetsItem, [Tab.name]: Tab, [Tabs.name]: Tabs },
+    components: { mainPageNav, assetsItem, [Tab.name]: Tab, [Tabs.name]: Tabs, [Popover.name]: Popover },
     data() {
         return {
             conditionList: [{ title: '能量', number: '1/4' }, { title: '带宽', number: '1/4' }],
             operateList: [{ title: '转账', icon: 'icon-zhuanzhang' }, { title: '收款', icon: 'icon-shoukuan' }, { title: '投票', icon: 'icon-navicon-tp' }],
             assetsList: [{ icon: 'icon-paixu' }, { icon: 'icon-add' }],
             tabList: [{ title: '资产' }, { title: '收藏品' }],
+            managerActions: [{ text: '修改账户名' },
+            { text: '导出账户' },
+            { text: '连接管理' },
+            { text: '删除账户' }],
+
             currentTab: 0,
             currentOperate: null,
+            showPopover: false
         }
     },
     methods: {
@@ -103,6 +126,8 @@ export default {
             this.$router.push({
                 path: "/coinDetails",
             });
+        },
+        onSelect() {
 
         }
     }
@@ -123,6 +148,39 @@ export default {
             flex-direction: column;
             justify-content: center;
 
+            &-user {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                &-name {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: flex-end;
+                    color: #fff;
+
+                    &-icon {
+                        margin-left: 1px;
+                        font-size: 16px;
+                    }
+                }
+
+                &-right {
+                    font-size: 12px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    color: #fff;
+
+
+                    &-manager {
+                        margin-left: 8px;
+                        font-size: 16px;
+                        cursor: pointer;
+                    }
+                }
+            }
+
             &-account {
                 justify-content: flex-start;
 
@@ -134,8 +192,6 @@ export default {
                     color: hsla(0, 0%, 100%, .5);
                     font-size: 12px;
                     font-weight: 300;
-
-                    &-word {}
                 }
             }
 
@@ -202,9 +258,11 @@ export default {
                 cursor: pointer;
 
                 &-icon {
-                    margin-bottom: 6px;
-                    font-size: 30px;
-                    color: #000;
+                    margin-bottom: 2px;
+
+                    &-svg {
+                        font-size: 22px;
+                    }
                 }
 
                 &-word {
@@ -280,7 +338,7 @@ export default {
     .info-module {
         width: 320px;
         margin: 0 auto;
-        margin-bottom: 20px;
+        margin-bottom: 6px;
         display: flex;
         align-items: center;
     }
@@ -288,6 +346,13 @@ export default {
     .icon-copy,
     .icon-share {
         margin-left: 10px;
+        font-size: 20px;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .icon-copy {
+        font-size: 18px;
     }
 }
 </style>

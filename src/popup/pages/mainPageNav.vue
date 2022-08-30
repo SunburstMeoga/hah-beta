@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="content-right">
-                <div class="content-right-item" v-for="(item, index) in rightList" :key="index">
+                <div class="content-right-item" v-for="(item, index) in rightList" :key="index" @click="toPage(item)">
                     <div class="content-right-item-icon icon iconfont" :class="item.icon">
                     </div>
                 </div>
@@ -38,20 +38,32 @@ export default {
             ],
             rightList: [
                 {
+                    router: "/settingPage",
                     icon: "icon-roundaddlight"
                 },
                 {
+                    router: "/settingPage",
                     icon: "icon-menu"
                 },
                 {
+                    router: "/settingPage",
                     icon: "icon-reload"
                 }, {
+                    router: "/settingPage",
                     icon: "icon-settings"
                 }
             ]
         }
     },
     methods: {
+        toPage(item) {
+            console.log('item', item)
+            this.$router.push({
+                path: item.router,
+            });
+            console.log('router', item.router)
+
+        },
         changeNode(value) {
             console.log('当前选择节点value值：', value)
             this.currentNode = parseInt(value)
