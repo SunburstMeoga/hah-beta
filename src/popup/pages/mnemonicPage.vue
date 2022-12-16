@@ -4,22 +4,9 @@
       <page-title pageTitleWord="助记词"></page-title>
     </div>
     <div class="content-list">
-      <div
-        class="content-list-all"
-        v-for="(item, index) in contentList"
-        :key="index"
-      >
-        <div
-          class="content-list-all-item"
-          v-for="(_item, _index) in item"
-          :key="_index"
-        >
-          <input
-            type="text"
-            :autofocus="index === 0 && _index === 0"
-            :disabled="!canEnter"
-            v-model="_item.content"
-          />
+      <div class="content-list-all" v-for="(item, index) in contentList" :key="index">
+        <div class="content-list-all-item" v-for="(_item, _index) in item" :key="_index">
+          <input type="text" :autofocus="index === 0 && _index === 0" :disabled="!canEnter" v-model="_item.content" />
         </div>
       </div>
     </div>
@@ -27,16 +14,10 @@
       <div class="address-title">钱包地址：</div>
       <div class="address-content">{{ address }}</div>
       <div class="address-operate">
-        <div
-          class="address-operate-button address-operate-copy"
-          @click="copyAddress()"
-        >
+        <div class="address-operate-button address-operate-copy" @click="copyAddress()">
           复制钱包地址
         </div>
-        <div
-          class="address-operate-button address-operate-code"
-          @click="scanCode()"
-        >
+        <div class="address-operate-button address-operate-code" @click="scanCode()">
           生成二维码
         </div>
       </div>
@@ -125,7 +106,8 @@ export default {
       var wallet = new ethers.Wallet(privateKey);
       var address = wallet.address;
       this.address = address;
-      this.toTrandePage();
+      console.log('通过助记词导入的钱包地址', this.address)
+      // this.toTrandePage();
     },
     //复制钱包地址
     copyAddress() {
@@ -138,7 +120,7 @@ export default {
     //前往交易页面
     toTrandePage() {
       this.$router.push({
-        path: "/trade",
+        path: "/indexPage",
       });
     },
     //点击底部确认按钮
@@ -184,11 +166,13 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-    height: 600px;
+  height: 600px;
 }
+
 .title {
-    width: 360px;
+  width: 360px;
 }
+
 .content-list {
   display: flex;
   flex-direction: column;
@@ -196,17 +180,20 @@ export default {
   justify-content: center;
   padding-top: 70px;
   margin-bottom: 20px;
+
   &-all {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 16px;
     padding: 0 12px;
+
     &-item {
       width: 32%;
       height: 40px;
       border-radius: 6px;
-    //   border: 1px solid gainsboro;
+
+      //   border: 1px solid gainsboro;
       input {
         text-align: center;
         width: 100%;
@@ -215,6 +202,7 @@ export default {
     }
   }
 }
+
 .address {
   width: 316px;
   background: #f8f8f8;
@@ -223,18 +211,22 @@ export default {
   padding: 10px;
   margin: 0 auto;
   margin-bottom: 40px;
+
   &-title {
     font-weight: bold;
     font-size: 14px;
     margin-bottom: 6px;
   }
+
   &-content {
     word-break: break-all;
     margin-bottom: 12px;
   }
+
   &-operate {
     display: flex;
     justify-content: space-between;
+
     &-button {
       width: 80px;
       height: 20px;
@@ -246,6 +238,7 @@ export default {
     }
   }
 }
+
 .confirm {
   width: 336px;
   background: #007efe;

@@ -1,4 +1,5 @@
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
 
 const path = require("path");
 
@@ -22,7 +23,8 @@ const copyFiles = [
 const plugins = [
 	new CopyWebpackPlugin({
 		patterns: copyFiles
-	})
+	}),
+	new NodePolyfillPlugin()
 ];
 
 // 页面文件
@@ -53,9 +55,9 @@ module.exports = {
 		plugins,
 		resolve: {
 			fallback: {
-			  "crypto": require.resolve("crypto-browserify")
+				"crypto": require.resolve("crypto-browserify")
 			}
-		  },
+		},
 	},
 	// 配置 content.css
 	css: {
